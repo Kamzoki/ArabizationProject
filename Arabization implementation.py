@@ -1,6 +1,9 @@
 from __future__ import unicode_literals
 from nltk import CFG
 from nltk.parse import RecursiveDescentParser
+from nltk.parse import ShiftReduceParser
+from nltk.parse import LeftCornerChartParser
+from nltk.parse import EarleyChartParser
 
 m_Grammar = CFG.fromstring("""
 
@@ -17,7 +20,19 @@ DetNN -> 'الحديقة'
 """)
 
 def fn_RDP(sent):
-    sent.split()
     rd = RecursiveDescentParser (m_Grammar)
     for w in rd.parse(sent):
         print(w)
+
+def fn_SRP(sent):
+    sr=ShiftReduceParser (m_Grammar)
+    for w in sr.parse (sent):
+        print (w)
+def fn_LCP (sent):
+    lcp=LeftCornerChartParser (m_Grammar)
+    for w in lcp.parse (sent):
+        print(w)
+def fn_ECP(sent):
+    ecp= EarleyChartParser (m_Grammar)
+    for w in ecp.parse (sent):
+        print (w)
