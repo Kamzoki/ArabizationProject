@@ -22,8 +22,8 @@ Det -> 'the'|'a'|'an'|'no'
 
 def fn_RDP(sent,word):
     rd = RecursiveDescentParser (m_Grammar)
-    #for w in rd.parse(sent):
-        #print(w)
+    for w in rd.parse(sent):
+        print(w)
     fn_PP(sent,word)
 
 def fn_PP(sent,word):
