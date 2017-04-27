@@ -16,8 +16,10 @@ ADJP -> NN Adj|NP|NP Adj|Det NN Adj|Det Adj
 V ->'is'|'barking'|'moving'|'burning'|'am'|'are'|'have'
 NN ->'money'|'cat'|'car'|'dog'|'house'
 Adj ->'cute'|'buffoon'|'bad'|'good'|'broke'|'poor'
-Det -> 'the'|'a'|'an'|'no'
+Det -> 'the'|'a'|'an'|'no'|'I'
 """)
+
+
 
 
 def fn_RDP(sent,word):
@@ -26,16 +28,17 @@ def fn_RDP(sent,word):
         print(w)
     fn_PP(sent,word)
 
-def fn_PP(sent,word):
-    #sentA=sent
-    wordSyns=wn.synsets(word);
+def fn_PP(text = "ذهب أحمد الى الحديقة", word = 'ذهب'):
+    sent = text.split()
+    wordSyns=wn.synsets(word, lang = 'arb');
     for syn in wordSyns:
-        wordLemmaNames=syn.lemma_names()
+        wordLemmaNames=syn.lemma_names('arb')
         for w in sent:
             if(w==word):
                 sent[sent.index(w)]=wordLemmaNames[0]
                 word = wordLemmaNames[0]
-        print(sent)
+                print(sent)
+                
 def fn_SRP(sent):
     sr=ShiftReduceParser (m_Grammar)
     for w in sr.parse (sent):
